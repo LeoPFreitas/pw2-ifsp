@@ -12,7 +12,6 @@ if($produto->getOperacao() == "INSERIR"){
 
 $prodAll = $produto->selectAll();
 
-
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +66,8 @@ $prodAll = $produto->selectAll();
                     echo "<td>$idProduto</td>";
                     echo "<td>$nome</td>";
                     echo "<td>$preco</td>";
-                    echo "<td>Alterar</td>";
-                    echo "<td>Excluir</td>";
+                    echo "<td><a href=produtoView.php?txtIdProduto=$idProduto>Alterar</a></td>";
+                    echo "<td><a href=produtoDelete.php?txtIdProduto=$idProduto>Deletar</a>Excluir</td>";
                     echo "</tr>";
                 }
             ?>

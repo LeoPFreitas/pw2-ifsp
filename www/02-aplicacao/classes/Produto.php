@@ -4,7 +4,6 @@ class Produto {
   private $idProduto;
   private $nome;
   private $preco;
-
   private $operacao;
   private $con;
 
@@ -25,7 +24,7 @@ class Produto {
   }
 
   public function setOperacao($operacao){
-    $this->operacao = $operacao;
+    $this->operacao = $str_uppercase($operoperacao);
   }
 
   public function getOperacao(){
@@ -35,7 +34,6 @@ class Produto {
   function __construct(){
     $this->openConexao();
     date_default_timezone_set('America/Sao_Paulo');
-
   }
 
   public function openConexao() {
@@ -92,6 +90,18 @@ class Produto {
     mysqli_free_result($resultado);
 
     return $produtos;
+  }
+
+  function selectByID(){
+    $sql = "SELECT * FROM produto WHERE id_produto = $this->id_produto";
+
+    $resultado = mysqli_query($this->con, $sql);
+    $produtos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+    mysqli_free_result($resultado);
+
+    $this->idProduto = $produtos[0].['idProduto'];
+    $this->nome = $produtos[0].['nome'];
+    $this->preco = $produtos[0].['preco'];
   }
   
   function updateProduto(){
